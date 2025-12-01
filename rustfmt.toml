@@ -1,0 +1,4 @@
+# See all options: https://rust-lang.github.io/rustfmt/
+brace_style = "AlwaysNextLine"
+control_brace_style = "AlwaysNextLine"
+enum_discrim_align_threshold = 50

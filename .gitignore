@@ -22,3 +22,6 @@ target
 
 # Visual Studio files
 .vs/
+
+# Task input files
+input.txt
