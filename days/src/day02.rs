@@ -1,4 +1,5 @@
 use std::fs;
+use fancy_regex_macro::regex;
 
 pub fn run()
 {
@@ -19,7 +20,10 @@ fn part1() -> i64
 
 fn part2() -> i64
 {
-    todo!()
+    let invalid_id_regex = regex!(r"^(\d+)\1+$");
+    process_file("input/day02/input.txt", |id| {
+        invalid_id_regex.is_match(&id.to_string()).unwrap()
+    })
 }
 
 fn process_file<P>(path: &str, is_invalid_id: P) -> i64
