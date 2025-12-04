@@ -37,23 +37,34 @@ fn part2() -> i64
 
     for line in buff_reader.lines()
     {
-        let turn = decode_dial_dir(line.unwrap().as_str());
+        let mut turn = decode_dial_dir(line.unwrap().as_str());
+        let whole_turns = turn.abs() / 100;
+
+        dial_pass_trough_0 += whole_turns;
+        turn %= 100;
 
         dial_pos += turn;
 
+        // Right turn
         if turn > 0
         {
             dial_pass_trough_0 += dial_pos / 100;
 
             dial_pos %= 100;
         }
+        // Count left turns that land on 0
         else if dial_pos == 0
         {
             dial_pass_trough_0 += 1;
         }
+        // Left turn that passes over 0
         else if dial_pos < 0
         {
-            dial_pass_trough_0 += turn.abs() / 100 + (if dial_pos == turn { 0 } else { 1 });
+            // Ignore turns that start at 0
+            if dial_pos != turn
+            {
+                dial_pass_trough_0 += 1;
+            }
 
             dial_pos %= 100;
             dial_pos += 100;
