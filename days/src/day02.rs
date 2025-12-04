@@ -1,5 +1,5 @@
-use std::fs;
 use fancy_regex_macro::regex;
+use std::fs;
 
 pub fn run()
 {
